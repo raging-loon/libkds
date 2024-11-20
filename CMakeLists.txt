@@ -15,5 +15,12 @@ endif()
 include_directories(
     "${CMAKE_CURRENT_SOURCE_DIR}/"
 )
+
+add_executable(libkds
+    kds_config.c
+    kds_test.c
+)
+
 add_subdirectory(kdscli)
 add_subdirectory(modules/pcap)
+
