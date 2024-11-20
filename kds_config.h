@@ -101,8 +101,8 @@ KDS_EXPORT kds_pair_t* kds_cfg_find(kds_config_t* cfg, const char* key);
 /// @brief 
 ///     Find a pair, return the key's value
 /// 
-/// @param cfg 
-/// @param key 
+/// @param[in] cfg 
+/// @param[in] key 
 ///
 /// @return NULL        if the key cannot be found
 ///

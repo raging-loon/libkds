@@ -185,13 +185,13 @@ kds_error kds_cfg_destroy(kds_config_t* cfg)
 static kds_error kds_parse_cfg_value(kds_config_t* cfg, const char* str, unsigned int len)
 {
 
-    char* kv_mem = (char*)malloc(len);
+    char* kv_mem = (char*)malloc(len + 1);
 
     if(!kv_mem)
         return KDS_NO_MEM;
 
-    strncpy(kv_mem, str, len);
-
+    strncpy(kv_mem, str, len+1);
+    printf("%s\n",str);
     unsigned int split_loc = 0;
 
     for(unsigned int i = 0; i < len; i++)
@@ -212,8 +212,6 @@ static kds_error kds_parse_cfg_value(kds_config_t* cfg, const char* str, unsigne
         val_ptr = kv_mem + split_loc + 1;
     }
 
-    printf("%s | %s\n", key_ptr, val_ptr);
-
     kds_cfg_insert(cfg, key_ptr, val_ptr);
 
     return KDS_OK;
@@ -228,6 +226,7 @@ kds_error kds_parse_cfg_string(kds_config_t* cfg, const char* string, unsigned i
     unsigned int str_idx = 0;
 
     char buffer[500];
+    memset(buffer, 0, sizeof(buffer));
     cur_key_idx = str_idx;
 
     while(str_idx < length)
@@ -236,7 +235,6 @@ kds_error kds_parse_cfg_string(kds_config_t* cfg, const char* string, unsigned i
         if(string[str_idx] == ',' || string[str_idx] == '\0')
         {
             unsigned int length = str_idx - cur_key_idx;
-            
             strncat(buffer, string + cur_key_idx, str_idx);
             // mark end of string
             buffer[length] = 0;

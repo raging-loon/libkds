@@ -7,7 +7,7 @@ extern "C" {
 
 #ifdef KDS_DYNLIB
 #   ifdef __GNUC__ 
-#       define      KDS_EXPORT     __attribute__((visiblity("default")))
+#       define      KDS_EXPORT     __attribute__((visibility("default")))
 #       define      KDS_IMPORT
 #   elif defined(__MSC_VER)
 #       define      KDS_EXPORT     __declspec(export)

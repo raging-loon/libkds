@@ -5,6 +5,7 @@ int main()
 {
     kds_config_t cfg;
 
+
     if(kds_cfg_init(&cfg, KDS_CONFIG_DEFAULT_SIZE) != KDS_OK)
     {
         printf("faol;\n");
@@ -13,7 +14,13 @@ int main()
 
     char str[] = "interface=eth0";
 
-    kds_parse_cfg_string(&cfg, str, sizeof(str));
+    if(kds_parse_cfg_string(&cfg, str, sizeof(str)) != KDS_OK)
+    {
+        printf("failed to parse config\n");
+        return -1;
+    }
+
+
     printf("%s\n", kds_cfg_find_val(&cfg, "interface"));
 
     // kds_cfg_insert(&cfg, "hello", "1");

@@ -16,6 +16,7 @@
 #define MUTANT_NAME_BUFFER_SZ   256
 #define printerr(x,...) fprintf(stderr, x, __VA_ARGS__)
 
+
 static void print_help();
 
 /// 
@@ -52,6 +53,8 @@ static kds_module_t* load_module_from_file(const char* name);
 ///
 static void info_dump_module(const kds_module_t* mod);
 
+static void print_module_requirements(kds_mod_requirement_t req);
+
 int main(int argc, char** argv)
 {
 
@@ -82,13 +85,13 @@ int main(int argc, char** argv)
 
     void* handle = NULL;
 
-    if(mod->instantiate(&handle) == false)
+    if(mod->instantiate(&handle) != KDS_OK)
     {
         fprintf(stderr,"Failed to instantiate module!\n");
         return 1;
     }
 
-    if(!mod->load(handle))
+    if(mod->load(handle) != KDS_OK)
         fprintf(stderr, "Failed to load module!\n");
 
     info_dump_module(mod);
@@ -210,7 +213,21 @@ void info_dump_module(const kds_module_t* mod)
     MOD_CHECK_FN(unload);
     MOD_CHECK_FN(recv);
     MOD_CHECK_FN(send);
+    MOD_CHECK_FN(set_config);
+    MOD_CHECK_FN(parse_config);
 
     printf("\n");
 
+    printf("Module requirements:\n");
+    print_module_requirements(mod->module_requirements);
+}
+
+void print_module_requirements(kds_mod_requirement_t req)
+{
+    if((req & KDS_REQ_NONE) == KDS_REQ_NONE)
+        printf("    NONE\n");
+    if((req & KDS_REQ_ADMIN) == KDS_REQ_ADMIN)
+        printf("    ADMIN\n");
+    if((req & KDS_REQ_CONFIG) == KDS_REQ_CONFIG)
+        printf("    CONFIG\n");
 }
