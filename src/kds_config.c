@@ -3,8 +3,8 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "kds_config.h"
-#include "kds_err.h"
+#include "libkds/kds_config.h"
+#include "libkds/kds_err.h"
 
 static uint32_t kds_fnv1a(const char* string, unsigned int length)
 {

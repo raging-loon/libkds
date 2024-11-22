@@ -1,7 +1,7 @@
-#include "libkds.h"
-#include "kds_mod.h"
-#include "kds_err.h"
-#include "kds_config.h"
+#include "libkds/libkds.h"
+#include "libkds/kds_mod.h"
+#include "libkds/kds_err.h"
+#include "libkds/kds_config.h"
 
 #include <stdlib.h>
 #include <pcap.h>

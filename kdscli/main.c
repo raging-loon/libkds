@@ -1,4 +1,4 @@
-#include "kds_mod.h"
+#include "libkds/kds_mod.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

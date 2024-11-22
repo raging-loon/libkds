@@ -3,7 +3,7 @@ add_library(
     kds_pcap
     SHARED
     pcapmod.c
-    ../../kds_config.c
+    ../../src/kds_config.c
 )
 
 target_link_libraries(kds_pcap PUBLIC pcap)

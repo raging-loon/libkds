@@ -1,4 +1,4 @@
-#include "kds_config.h"
+#include "libkds/kds_config.h"
 #include <stddef.h>
 #include <stdio.h>
 int main()
