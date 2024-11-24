@@ -6,4 +6,5 @@ add_library(
     ../../src/kds_config.c
 )
 
+message("hello")
 target_link_libraries(kds_pcap PUBLIC pcap)

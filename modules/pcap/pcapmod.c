@@ -38,7 +38,6 @@ kds_error pm_load(pm_handle_t* handle)
         return KDS_INIT_FAIL;
         
     handle->dev_handle = pcap_open_live(handle->dev_name, BUFSIZ, 1, 1000, handle->errbuf);
-
     if(handle->dev_handle == NULL)
         return KDS_INIT_FAIL;
 

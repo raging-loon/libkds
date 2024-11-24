@@ -5,12 +5,15 @@ project(libkds_test)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_SHARED_LIBRARY_PREFIX "")
 set(CMAKE_BUILD_TYPE Debug)
+
 if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build/")
     set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build/")
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build/")
-
+    message("Non submodule build")
     add_compile_options(-Wall -Wextra -Wpedantic)
+else()
+    message("Building libkds as a submodule")
 endif()
 
 
